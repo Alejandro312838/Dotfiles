@@ -1,0 +1,26 @@
+/***
+ *    ┏┓┏┓┓ ┏┓┳┓┏┓
+ *    ┃ ┃┃┃ ┃┃┣┫┗┓
+ *    ┗┛┗┛┗┛┗┛┛┗┗┛
+ *                
+ */
+
+
+/*--------Color definitions------------*/
+
+
+
+* {
+       background:       #282828;
+       background-alt:   #3c3836;
+       background-alpha: rgba(40, 40, 40, 0.7);
+       foreground:       #ebdbb2;
+       border-color:     #928374;
+       selected:         #fb4934;
+       selected-alpha:   rgba(251, 73, 52, 0.3);
+       selected-text:    #282828;
+       active:           #d79921;
+       urgent:           #fb4934;
+}
+
+

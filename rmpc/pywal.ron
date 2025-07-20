@@ -1,0 +1,37 @@
+#![enable(implicit_some)]
+(
+    text_color: "#b2ddc9",
+    background_color: "#0D0F0F",
+    header_background_color: "#0D0F0F",
+    current_item_style: (fg: "black", bg: "#72A48D", modifiers: "Bold"),
+    highlighted_item_style: (fg: "#A04E41", modifiers: "Bold"),
+    highlight_border_style: (fg: "#72A48D"),
+    progress_bar: (
+        track_style: (bg: "#0D0F0F"),
+        elapsed_style: (fg: "#A04E41", bg: "#0D0F0F"),
+        thumb_style: (fg: "#A04E41", bg: "#0D0F0F")
+    ),
+    tab_bar: (
+        active_style: (fg: "black", bg: "#A04E41", modifiers: "Bold"),
+        inactive_style: ()
+    ),
+    scrollbar: (
+        thumb_style: (fg: "#72A48D")
+    ),
+    song_table_format: [
+        (
+            prop: (kind: Property(Artist), style: (fg: "#72A48D"), default: (kind: Text("Unknown"))),
+            width: "50%",
+            alignment: Right,
+        ),
+        (
+            prop: (kind: Text("-"), style: (fg: "#72A48D"), default: (kind: Text("Unknown"))),
+            width: "1",
+            alignment: Center,
+        ),
+        (
+            prop: (kind: Property(Title), style: (fg: "#A89271"), default: (kind: Text("Unknown"))),
+            width: "50%",
+        )
+    ],
+)

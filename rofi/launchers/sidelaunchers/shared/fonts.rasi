@@ -1,0 +1,11 @@
+/***
+ *    ┏┓┏┓┳┓┏┳┓┏┓
+ *    ┣ ┃┃┃┃ ┃ ┗┓
+ *    ┻ ┗┛┛┗ ┻ ┗┛
+ *               
+ */
+
+
+* {
+    font: "JetBrainsMono Nerd Font Propo Bold 10";
+}
