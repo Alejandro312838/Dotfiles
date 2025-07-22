@@ -12,28 +12,30 @@
 set $mod Mod1
 #exec --no-startup-id alacritty
 exec_always --no-startup-id picom
+exec --no-startup-id xrandr --output eDP-1 --mode 1366x768 --rate 48.01
 #exec_always --no-startup-id pkill polybar; polybar mybar &
 exec_always --no-startup-id pkill polybar; polybar &
 exec --no-startup-id ~/.config/i3/touchpad.sh
-
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec_always --no-startup-id autotiling
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 
 # BORDES
 for_window [class="^.*"] border pixel 0
 #hide_edge_borders both
-default_floating_border pixel 4
-default_border pixel 4
-
-client.focused          #cba6f7 #313244 #cdd6f4 #cba6f7 #cba6f7
-client.focused_inactive #313244 #313244 #cdd6f4 #313244 #313244
-client.focused_tab_title #313244 #313244 #cdd6f4 #313244 #313244
-client.unfocused          #313244 #313244 #cdd6f4 #313244 #313244
-client.urgent             #313244 #313244 #cdd6f4 #313244 #313244
-client.placeholder        #313244 #313244 #cdd6f4 #313244 #313244
-
-client.background       #ffffff
-exec_always --no-startup-id autotiling
+#default_floating_border pixel 4
+#default_border pixel 4
+#
+#client.focused          #cba6f7 #313244 #cdd6f4 #cba6f7 #cba6f7
+#client.focused_inactive #313244 #313244 #cdd6f4 #313244 #313244
+#client.focused_tab_title #313244 #313244 #cdd6f4 #313244 #313244
+#client.unfocused          #313244 #313244 #cdd6f4 #313244 #313244
+#client.urgent             #313244 #313244 #cdd6f4 #313244 #313244
+#client.placeholder        #313244 #313244 #cdd6f4 #313244 #313244
+#
+#client.background       #ffffff
+#exec_always --no-startup-id autotiling
 font pango:monospace 5
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -57,20 +59,23 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/volumecontrol.sh i
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/volumecontrol.sh d
+bindsym XF86AudioMute         exec --no-startup-id ~/.local/bin/volumecontrol.sh m
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 #bindsym $mod+space exec --no-startup-id ~/.config/rofi/launchers/launcher.sh
 bindsym $mod+space exec --no-startup-id ~/.config/rofi/launchers/launcher.sh
-bindsym $mod+Shift+p exec powermenu
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/rofi/scripts/powermenu.sh
 bindsym $mod+e exec dolphin
 bindsym $mod+d exec --no-startup-id bash -c 'cd ~/Documents/deadbeef-1.10.0 && nohup ./deadbeef > /dev/null 2>&1 &'
 # Subir brillo
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.local/bin/brightnesscontrol.sh i
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.local/bin/brightnesscontrol.sh d
+# Iniciar Pomodoro
+bindsym $mod+Shift+y exec --no-startup-id ~/.local/bin/simple-pomodoro.sh
 
-# Bajar brillo
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym $mod+Shift+o exec --no-startup-id ~/.local/bin/pause-pomodoro.sh
+bindsym $mod+Shift+u exec --no-startup-id ~/.local/bin/resume-pomodoro.sh
 
 
 #GAPS
@@ -222,9 +227,7 @@ exec_always --no-startup-id feh --bg-scale /home/alejandro/Pictures/aa.jpeg
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# Puedes forzar modo split para cada nueva ventana
-for_window [class=".*"] layout split
-exec_always --no-startup-id i3-auto-layout
 
-exec_always --no-startup-id wal -i ~/Pictures/aa.jpeg
-exec_always --no-startup-id feh --bg-scale ~/.cache/wal/wall.png
+exec_always --no-startup-id wal -n -i ~/Pictures/anime_skull.png
+#exec_always --no-startup-id feh --bg-scale ~/.cache/wal/wall.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/aa.jpeg
