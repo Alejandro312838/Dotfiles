@@ -4,17 +4,25 @@ STATE_FILE="/tmp/polybar-pomodoro.state"
 
 # Mostrar estado si ya está corriendo
 if [[ -f "$STATE_FILE" ]]; then
-    cat "$STATE_FILE"
+    content=$(<"$STATE_FILE")
+    if [[ -n "$content" ]]; then
+        echo "$content"
+    else
+        echo "⏸ Paused"
+    fi
     exit 0
 fi
 
 # INICIA el pomodoro en segundo plano
 (
-    CYCLES=1
+    CYCLES=2
     ROUNDS=4
     FOCUS=1500       # 25 min
     BREAK=300        # 5 min
     LONG_BREAK=1200  # 20 min
+
+    # Crear archivo vacío para indicar que está activo (y Polybar mostrará "⏸ Paused")
+    > "$STATE_FILE"
 
     update_state() {
         echo "$1" > "$STATE_FILE"
@@ -52,5 +60,6 @@ fi
     rm -f "$STATE_FILE"
 ) &
 
-echo "▶ Start"
+# No mostrar nada desde este script principal
+exit 0
 
