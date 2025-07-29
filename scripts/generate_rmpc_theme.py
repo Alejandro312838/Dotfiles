@@ -22,22 +22,31 @@ theme = f"""#![enable(implicit_some)]
     layout: Split(
         direction: Vertical,
         panes: [
-            (pane: Pane(Header), size: "1"),
-            (pane: Pane(TabContent), size: "100%"),
-            (pane: Pane(ProgressBar), size: "1"),
+            (
+                pane: Pane(Header),
+                size: "1",
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                pane: Pane(ProgressBar),
+                size: "1",
+            ),
         ],
     ),
     progress_bar: (
         symbols: ["", "", "⭘", " ", " "],
         track_style: (bg: "{special['background']}"),
         elapsed_style: (fg: "{c['color2']}", bg: "{special['background']}"),
-        thumb_style: (fg: "{c['color2']}", bg: "{special['background']}")
+        thumb_style: (fg: "{c['color2']}", bg: "{special['background']}"),
     ),
     scrollbar: (
         symbols: ["│", "█", "▲", "▼"],
         track_style: (),
         ends_style: (),
-        thumb_style: (fg: "{c['color6']}")
+        thumb_style: (fg: "{c['color6']}"),
     ),
     browser_column_widths: [20, 38, 42],
     text_color: "{special['foreground']}",
@@ -45,10 +54,7 @@ theme = f"""#![enable(implicit_some)]
     header_background_color: "{special['background']}",
     modal_background_color: None,
     modal_backdrop: false,
-    tab_bar: (
-        active_style: (fg: "black", bg: "{c['color2']}", modifiers: "Bold"),
-        inactive_style: ()
-    ),
+    tab_bar: (active_style: (fg: "black", bg: "{c['color2']}", modifiers: "Bold"), inactive_style: ()),
     borders_style: (fg: "{c['color7']}"),
     highlighted_item_style: (fg: "{c['color1']}", modifiers: "Bold"),
     current_item_style: (fg: "black", bg: "{c['color6']}", modifiers: "Bold"),
@@ -67,7 +73,7 @@ theme = f"""#![enable(implicit_some)]
         (
             prop: (kind: Property(Title), style: (fg: "{c['color3']}"), default: (kind: Text("Unknown"))),
             width: "50%",
-        )
+        ),
     ],
     header: (
         rows: [
@@ -92,8 +98,8 @@ theme = f"""#![enable(implicit_some)]
                     (kind: Text("% "), style: (fg: "{special['foreground']}", modifiers: "Bold"))
                 ]
             )
-        ]
-    )
+        ],
+    ),
 )
 """
 

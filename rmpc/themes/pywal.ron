@@ -1,37 +1,90 @@
 #![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
 (
-    text_color: "#b2ddc9",
-    background_color: "#0D0F0F",
-    header_background_color: "#0D0F0F",
-    current_item_style: (fg: "black", bg: "#72A48D", modifiers: "Bold"),
-    highlighted_item_style: (fg: "#A04E41", modifiers: "Bold"),
-    highlight_border_style: (fg: "#72A48D"),
-    progress_bar: (
-        track_style: (bg: "#0D0F0F"),
-        elapsed_style: (fg: "#A04E41", bg: "#0D0F0F"),
-        thumb_style: (fg: "#A04E41", bg: "#0D0F0F")
+    default_album_art_path: None,
+    draw_borders: false,
+    show_song_table_header: false,
+    symbols: (song: "🎵", dir: "📁", playlist: "🎼", marker: "\u{e0b0}"),
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                pane: Pane(Header),
+                size: "1",
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                pane: Pane(ProgressBar),
+                size: "1",
+            ),
+        ],
     ),
-    tab_bar: (
-        active_style: (fg: "black", bg: "#A04E41", modifiers: "Bold"),
-        inactive_style: ()
+    progress_bar: (
+        symbols: ["", "", "⭘", " ", " "],
+        track_style: (bg: "#191918"),
+        elapsed_style: (fg: "#B46C87", bg: "#191918"),
+        thumb_style: (fg: "#B46C87", bg: "#191918"),
     ),
     scrollbar: (
-        thumb_style: (fg: "#72A48D")
+        symbols: ["│", "█", "▲", "▼"],
+        track_style: (),
+        ends_style: (),
+        thumb_style: (fg: "#B7C5A6"),
     ),
+    browser_column_widths: [20, 38, 42],
+    text_color: "#e9e1cf",
+    background_color: "#191918",
+    header_background_color: "#191918",
+    modal_background_color: None,
+    modal_backdrop: false,
+    tab_bar: (active_style: (fg: "black", bg: "#B46C87", modifiers: "Bold"), inactive_style: ()),
+    borders_style: (fg: "#e9e1cf"),
+    highlighted_item_style: (fg: "#A89071", modifiers: "Bold"),
+    current_item_style: (fg: "black", bg: "#B7C5A6", modifiers: "Bold"),
+    highlight_border_style: (fg: "#B7C5A6"),
     song_table_format: [
         (
-            prop: (kind: Property(Artist), style: (fg: "#72A48D"), default: (kind: Text("Unknown"))),
+            prop: (kind: Property(Artist), style: (fg: "#B7C5A6"), default: (kind: Text("Unknown"))),
             width: "50%",
             alignment: Right,
         ),
         (
-            prop: (kind: Text("-"), style: (fg: "#72A48D"), default: (kind: Text("Unknown"))),
+            prop: (kind: Text("-"), style: (fg: "#B7C5A6"), default: (kind: Text("Unknown"))),
             width: "1",
             alignment: Center,
         ),
         (
-            prop: (kind: Property(Title), style: (fg: "#A89271"), default: (kind: Text("Unknown"))),
+            prop: (kind: Property(Title), style: (fg: "#568C89"), default: (kind: Text("Unknown"))),
             width: "50%",
-        )
+        ),
     ],
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#e9e1cf", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "#e9e1cf", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#e9e1cf", modifiers: "Bold"))
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "#568C89", modifiers: "Bold"),
+                        default: (kind: Text("Unknown"), style: (fg: "#568C89", modifiers: "Bold"))
+                    ),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Title)), style: (fg: "#A89071", modifiers: "Bold"),
+                        default: (kind: Text("No Song"), style: (fg: "#A89071", modifiers: "Bold"))
+                    )
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#e9e1cf", modifiers: "Bold")),
+                    (kind: Property(Status(Volume)), style: (fg: "#e9e1cf", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "#e9e1cf", modifiers: "Bold"))
+                ]
+            )
+        ],
+    ),
 )

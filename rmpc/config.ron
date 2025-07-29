@@ -4,7 +4,7 @@
 (
     address: "127.0.0.1:6600",
     password: None,
-    theme: "minimal",
+    theme: "pywal",
     cache_dir: None,
     on_song_change: None,
     volume_step: 5,
@@ -120,7 +120,7 @@
         album_display_mode: SplitByDate,
         album_sort_by: Date,
     ),
-    tabs: [
+tabs: [
     (
         name: "Queue",
         pane: Split(
