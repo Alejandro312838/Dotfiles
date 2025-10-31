@@ -1,0 +1,9 @@
+* {
+    background:     #1e1e2e;  /* fondo principal */
+    background-alt: #313244;  /* fondo alternativo */
+    foreground:     #cdd6f4;  /* texto */
+    selected:       #6e6a99;  /* morado oscuro para selección */
+    active:         #f9e2af;  /* elemento activo */
+    urgent:         #f5c2e7;  /* elemento urgente */
+}
+

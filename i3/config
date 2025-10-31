@@ -12,8 +12,9 @@
 set $mod Mod1
 #exec --no-startup-id alacritty
 exec_always --no-startup-id picom
-#exec_always --no-startup-id pkill polybar; polybar mybar &
 exec_always --no-startup-id pkill polybar; polybar &
+exec --no-startup-id xrandr --output eDP-1 --mode 1366x768 --rate 48.01
+exec_always --no-startup-id ~/.config/polybar/shapes/launch.sh&
 exec --no-startup-id ~/.config/i3/touchpad.sh
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec_always --no-startup-id ~/.local/bin/autotiling
@@ -22,20 +23,19 @@ exec --no-startup-id copyq --start-server --no-systray
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 
+
 # BORDES
 for_window [class="^.*"] border pixel 0
-#hide_edge_borders both
-#default_floating_border pixel 4
-#default_border pixel 4
-#
-#client.focused          #cba6f7 #313244 #cdd6f4 #cba6f7 #cba6f7
-#client.focused_inactive #313244 #313244 #cdd6f4 #313244 #313244
-#client.focused_tab_title #313244 #313244 #cdd6f4 #313244 #313244
-#client.unfocused          #313244 #313244 #cdd6f4 #313244 #313244
-#client.urgent             #313244 #313244 #cdd6f4 #313244 #313244
-#client.placeholder        #313244 #313244 #cdd6f4 #313244 #313244
-#
-#client.background       #ffffff
+
+client.focused          #BA3457 #5A1F2D #ffffff #BA3457 #BA3457
+client.focused_inactive #5A1F2D #5A1F2D #ffffff #5A1F2D #5A1F2D
+client.focused_tab_title #5A1F2D #5A1F2D #ffffff #5A1F2D #5A1F2D
+client.unfocused         #7A263B #7A263B #ffffff #7A263B #7A263B
+client.urgent            #9A2D49 #9A2D49 #ffffff #9A2D49 #9A2D49
+client.placeholder       #5A1F2D #5A1F2D #ffffff #5A1F2D #5A1F2D
+
+client.background        #000000
+
 #exec_always --no-startup-id autotiling
 font pango:monospace 5
 
@@ -79,7 +79,9 @@ bindsym $mod+o exec --no-startup-id ~/.local/bin/pause-pomodoro.sh
 bindsym $mod+u exec --no-startup-id ~/.local/bin/resume-pomodoro.sh
 bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/exit-pomodoro.sh
 bindsym $mod+m exec --no-startup-id ~/.config/rofi/applets/bin/mpd.sh
-bindsym $mod+p exec --no-startup-id ~/scripts/presentar.sh
+bindsym $mod+p exec --no-startup-id xrandr --output DP-1 --mode 1366x768 --same-as eDP-1
+bindsym $mod+b exec --no-startup-id blueman-manager
+bindsym $mod+shift+t exec --no-startup-id ~/.config/rofi/applets/bin/theme_selector.sh
 #GAPS
 gaps inner 7px
 gaps outer 2px
@@ -221,13 +223,14 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-exec_always --no-startup-id feh --bg-scale /home/alejandro/Pictures/aa.jpeg
-
+#exec_always --no-startup-id feh --bg-scale /home/alejandro/Pictures/flowers.jpg
+exec_always --no-startup-id feh --bg-scale /home/alejandro/scripts/wallpaper.png
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-exec_always --no-startup-id wal -n -i ~/Pictures/anime_skull.png
 #exec_always --no-startup-id feh --bg-scale ~/.cache/wal/wall.png
 exec_always --no-startup-id xrandr --output DP-1 --mode 1280x720 --rate 60.02
-smart_gaps on
-hide_edge_borders smart
+smart_gaps off
+exec_always --no-startup-id xss-lock -- betterlockscreen -l
+exec --no-startup-id ibus-daemon -drx
+#exec --no-startup-id xrandr --output eDP-1 --scale 1.32x1.32

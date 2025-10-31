@@ -42,14 +42,14 @@ fi
 
     for ((i = 0; i < CYCLES; i++)); do
         for ((j = 1; j <= ROUNDS; j++)); do
-            notify-send "Pomodoro Started" "Focus time ($j/$ROUNDS)!"
+            notify-send -u low "Pomodoro Started" "Focus time ($j/$ROUNDS)!"
             countdown "$FOCUS"
 
             if [[ $j -eq $ROUNDS ]]; then
-                notify-send "Break Time" "Long break started"
+                notify-send -u low "Break Time" "Long break started"
                 countdown "$LONG_BREAK"
             else
-                notify-send "Break Time" "Short break started"
+                notify-send -u low"Break Time" "Short break started"
                 countdown "$BREAK"
             fi
         done
